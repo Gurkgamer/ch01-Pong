@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://dqhesbv8shgp4"]
+
+[ext_resource type="FontFile" uid="uid://bq5dhfcbixm5h" path="res://Resources/Fonts/PlatinumSign/Platinum Sign Over.ttf" id="1_ku674"]
+
+[resource]
+font = ExtResource("1_ku674")
+font_size = 72

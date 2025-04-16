@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlgfmacjlx8vh"]
+
+[ext_resource type="PackedScene" uid="uid://dymrixwxc542" path="res://Scenes/UI/Score/score_ui.tscn" id="1_q2ogo"]
+[ext_resource type="PackedScene" uid="uid://b3t2ow34bvohm" path="res://Scenes/Levels/MainLevel/main_level.tscn" id="2_37fen"]
+
+[node name="PongGame" type="Node"]
+
+[node name="ScoreUI" parent="." instance=ExtResource("1_q2ogo")]
+
+[node name="MainLevel" parent="." instance=ExtResource("2_37fen")]

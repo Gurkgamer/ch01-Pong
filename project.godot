@@ -17,8 +17,13 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Globals="*res://Global/Scripts/Globals.gd"
+Global="*res://Global/Scripts/Global.gd"
 EventBus="*res://Global/Scripts/EventBus.gd"
+
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [dotnet]
 
@@ -26,10 +31,10 @@ project/assembly_name="Pong"
 
 [layer_names]
 
-2d_physics/layer_1="Padel"
-2d_physics/layer_2="Goal"
-2d_physics/layer_3="Ball"
-2d_physics/layer_4="Level"
+2d_physics/layer_1="PLAYER"
+2d_physics/layer_2="GOAL"
+2d_physics/layer_3="BALL"
+2d_physics/layer_4="LEVEL"
 
 [rendering]
 

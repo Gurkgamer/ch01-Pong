@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://dymrixwxc542"]
+
+[ext_resource type="LabelSettings" uid="uid://dqhesbv8shgp4" path="res://Scenes/UI/Score/score_label_setting.tres" id="1_0plg8"]
+[ext_resource type="Script" uid="uid://b3sen5ynybnnd" path="res://Scenes/UI/Score/score_ui.gd" id="1_twv1f"]
+
+[node name="ScoreUI" type="CanvasLayer"]
+script = ExtResource("1_twv1f")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+
+[node name="Control" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LeftPlayerScore" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+label_settings = ExtResource("1_0plg8")
+horizontal_alignment = 1
+
+[node name="Control2" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RigthPlayerScore" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+label_settings = ExtResource("1_0plg8")
+horizontal_alignment = 1
+
+[node name="Control3" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
