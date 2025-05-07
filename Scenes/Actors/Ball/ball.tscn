@@ -2,8 +2,6 @@
 
 [ext_resource type="Script" uid="uid://hmribswiklum" path="res://Scenes/Actors/Ball/ball.gd" id="1_alge0"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_6bhdl"]
-
 [sub_resource type="SphereMesh" id="SphereMesh_cd41v"]
 
 [sub_resource type="Gradient" id="Gradient_borgh"]
@@ -11,18 +9,24 @@
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_e0d41"]
 gradient = SubResource("Gradient_borgh")
 
-[node name="Ball" type="RigidBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_6bhdl"]
+
+[node name="Ball" type="Area2D" groups=["Ball"]]
+physics_interpolation_mode = 1
 collision_layer = 4
 collision_mask = 11
-gravity_scale = 0.0
 script = ExtResource("1_alge0")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_6bhdl")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
 scale = Vector2(20.075, 20.075)
 mesh = SubResource("SphereMesh_cd41v")
 texture = SubResource("GradientTexture1D_e0d41")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6bhdl")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

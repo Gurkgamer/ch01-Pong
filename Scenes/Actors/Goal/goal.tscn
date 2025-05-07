@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://f40d3we22bqb"]
+
+[ext_resource type="Script" uid="uid://igoyblh5e3g1" path="res://Scenes/Actors/Goal/goal.gd" id="1_i0ewi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cd41v"]
+size = Vector2(3, 650)
+
+[node name="Goal" type="Area2D"]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_i0ewi")
+goal_side = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-5, 324)
+shape = SubResource("RectangleShape2D_cd41v")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(1, 1, 0, 1)
+polygon = PackedVector2Array(-7, -7, -4, -7, -4, 650, -7, 650)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

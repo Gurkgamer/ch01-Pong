@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://mu5ukwmouw25"]
+
+[ext_resource type="Script" uid="uid://bqy0rup81v3ci" path="res://Scenes/Actors/Player/player.gd" id="1_abgcx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_abgcx"]
+size = Vector2(10, 120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fgdim"]
+size = Vector2(10, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sln3p"]
+size = Vector2(10, 40)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_abgcx"]
+a = Vector2(104, 149)
+b = Vector2(114, 149)
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+collision_mask = 12
+script = ExtResource("1_abgcx")
+
+[node name="VisibleShape" type="Polygon2D" parent="."]
+unique_name_in_owner = true
+polygon = PackedVector2Array(-5, -100, 5, -100, 5, 100, -5, 100)
+
+[node name="CollisionShapeMiddle" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_abgcx")
+debug_color = Color(0.946557, 0.147585, 0.453525, 0.42)
+
+[node name="CollisionShapeUp" type="CollisionShape2D" parent="."]
+position = Vector2(0, -80)
+shape = SubResource("RectangleShape2D_fgdim")
+debug_color = Color(6.257e-07, 0.442029, 0.517911, 0.42)
+
+[node name="CollisionShapeDown" type="CollisionShape2D" parent="."]
+position = Vector2(0, 80)
+shape = SubResource("RectangleShape2D_sln3p")
+debug_color = Color(6.73831e-07, 0.458176, 0.318751, 0.42)
+
+[node name="CollisionShapeEdge" type="CollisionShape2D" parent="."]
+position = Vector2(-109, -48)
+shape = SubResource("SegmentShape2D_abgcx")
+one_way_collision_margin = 0.0
+debug_color = Color(0.999095, 0, 0.123741, 0.42)

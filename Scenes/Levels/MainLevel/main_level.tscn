@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://b3t2ow34bvohm"]
+[gd_scene load_steps=9 format=3 uid="uid://b3t2ow34bvohm"]
 
-[ext_resource type="Script" uid="uid://bqy0rup81v3ci" path="res://Scenes/Actors/Player/character_body_2d.gd" id="1_6bhdl"]
+[ext_resource type="PackedScene" uid="uid://mu5ukwmouw25" path="res://Scenes/Actors/Player/player.tscn" id="1_borgh"]
+[ext_resource type="Script" uid="uid://dvnjauejpc1ew" path="res://Scenes/Levels/MainLevel/main_level.gd" id="1_e0d41"]
 [ext_resource type="PackedScene" uid="uid://bedhlgnrn0dnu" path="res://Scenes/Actors/Ball/ball.tscn" id="2_borgh"]
-[ext_resource type="Script" uid="uid://igoyblh5e3g1" path="res://Scenes/Actors/Goal/goal.gd" id="3_borgh"]
+[ext_resource type="PackedScene" uid="uid://f40d3we22bqb" path="res://Scenes/Actors/Goal/goal.tscn" id="3_borgh"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6bhdl"]
 normal = Vector2(0, 1)
@@ -15,30 +16,22 @@ normal = Vector2(-1, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_cd41v"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e0d41"]
-size = Vector2(10, 200)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cd41v"]
-size = Vector2(3, 505)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_borgh"]
-size = Vector2(3, 505)
-
 [node name="MainLevel" type="Node2D"]
+script = ExtResource("1_e0d41")
 
 [node name="BlackBackground" type="Polygon2D" parent="."]
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(0, 0, 1152, 0, 1152, 648, 0, 648)
 
 [node name="Playground" type="Line2D" parent="."]
-points = PackedVector2Array(1, 140, 1151, 140, 1151, 647, 1, 647)
+points = PackedVector2Array(1, 1, 1151, 1, 1151, 647, 1, 647)
 closed = true
 width = 2.0
 
 [node name="PlaygroundBoundaries" type="Node2D" parent="Playground"]
 
 [node name="TopBoundary" type="StaticBody2D" parent="Playground/PlaygroundBoundaries"]
-position = Vector2(49, 140)
+position = Vector2(49, 0)
 collision_layer = 8
 collision_mask = 0
 
@@ -69,57 +62,20 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Playground/PlaygroundBoundaries/BottomBoundary"]
 shape = SubResource("WorldBoundaryShape2D_cd41v")
 
-[node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(41, 408)
-collision_mask = 12
-motion_mode = 1
-script = ExtResource("1_6bhdl")
+[node name="Player1" parent="." instance=ExtResource("1_borgh")]
+position = Vector2(34, 339)
 
-[node name="PhisicalShape" type="Polygon2D" parent="Player"]
-unique_name_in_owner = true
-position = Vector2(-5, -100)
-polygon = PackedVector2Array(0, 0, 10, 0, 10, 200, 0, 200)
+[node name="Player2" parent="." instance=ExtResource("1_borgh")]
+position = Vector2(1114, 335)
+rotation = 3.14159
+player_id = 1
 
-[node name="CollisionShape" type="CollisionShape2D" parent="Player"]
-unique_name_in_owner = true
-shape = SubResource("RectangleShape2D_e0d41")
+[node name="GoalLeft" parent="." instance=ExtResource("3_borgh")]
+position = Vector2(9, 1)
+
+[node name="GoalRight" parent="." instance=ExtResource("3_borgh")]
+position = Vector2(1154, 6)
+goal_side = 0
 
 [node name="Ball" parent="." instance=ExtResource("2_borgh")]
-position = Vector2(249, 270)
-
-[node name="GoalLeft" type="Area2D" parent="."]
-position = Vector2(9, 148)
-collision_layer = 2
-collision_mask = 4
-script = ExtResource("3_borgh")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GoalLeft"]
-position = Vector2(-5.5, 245.5)
-shape = SubResource("RectangleShape2D_cd41v")
-
-[node name="Polygon2D" type="Polygon2D" parent="GoalLeft"]
-color = Color(1, 1, 0, 1)
-polygon = PackedVector2Array(-7, -7, -4, -7, -4, 498, -7, 498)
-
-[node name="GoalRight" type="Area2D" parent="."]
-position = Vector2(1154, 148)
-collision_layer = 2
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GoalRight"]
-position = Vector2(-5.5, 245.5)
-shape = SubResource("RectangleShape2D_borgh")
-
-[node name="Polygon2D" type="Polygon2D" parent="GoalRight"]
-color = Color(1, 1, 0, 1)
-polygon = PackedVector2Array(-7, -7, -4, -7, -4, 498, -7, 498)
-
-[node name="Ball2" parent="." instance=ExtResource("2_borgh")]
-position = Vector2(249, 217)
-_ball_owner = 1
-
-[node name="Ball3" parent="." instance=ExtResource("2_borgh")]
-position = Vector2(248, 166)
-_ball_owner = 2
-
-[connection signal="body_entered" from="GoalLeft" to="GoalLeft" method="_on_body_entered"]
+position = Vector2(595, 330)
