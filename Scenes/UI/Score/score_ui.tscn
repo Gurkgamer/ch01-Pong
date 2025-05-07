@@ -1,7 +1,61 @@
-[gd_scene load_steps=3 format=3 uid="uid://dymrixwxc542"]
+[gd_scene load_steps=7 format=3 uid="uid://dymrixwxc542"]
 
 [ext_resource type="LabelSettings" uid="uid://dqhesbv8shgp4" path="res://Scenes/UI/Score/score_label_setting.tres" id="1_0plg8"]
 [ext_resource type="Script" uid="uid://b3sen5ynybnnd" path="res://Scenes/UI/Score/score_ui.gd" id="1_twv1f"]
+
+[sub_resource type="Animation" id="Animation_ro44k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -113)]
+}
+
+[sub_resource type="Animation" id="Animation_7ifld"]
+resource_name = "hide_scoreboard"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-2.98023e-08, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -113)]
+}
+
+[sub_resource type="Animation" id="Animation_twv1f"]
+resource_name = "show_scoreboard"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 0.0717938),
+"update": 0,
+"values": [Vector2(0, -113), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hnnjo"]
+_data = {
+&"RESET": SubResource("Animation_ro44k"),
+&"hide_scoreboard": SubResource("Animation_7ifld"),
+&"show_scoreboard": SubResource("Animation_twv1f")
+}
 
 [node name="ScoreUI" type="CanvasLayer"]
 script = ExtResource("1_twv1f")
@@ -9,7 +63,7 @@ script = ExtResource("1_twv1f")
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 23.0
+offset_top = -113.0
 grow_horizontal = 2
 size_flags_horizontal = 3
 
@@ -40,3 +94,15 @@ horizontal_alignment = 1
 [node name="Control3" type="Control" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="ScoreAnimation" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_hnnjo")
+}
+
+[node name="ScreenScoreTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[connection signal="timeout" from="ScreenScoreTimer" to="." method="_on_screen_score_timer_timeout"]
