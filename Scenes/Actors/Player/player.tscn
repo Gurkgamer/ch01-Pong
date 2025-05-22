@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://mu5ukwmouw25"]
+[gd_scene load_steps=7 format=3 uid="uid://mu5ukwmouw25"]
 
 [ext_resource type="Script" uid="uid://bqy0rup81v3ci" path="res://Scenes/Actors/Player/player.gd" id="1_abgcx"]
+[ext_resource type="Script" uid="uid://te8r7ogq3x45" path="res://Scenes/Actors/Player/ball_spawn_point.gd" id="2_fgdim"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_abgcx"]
 size = Vector2(10, 120)
@@ -16,7 +17,7 @@ a = Vector2(104, 149)
 b = Vector2(114, 149)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
-collision_mask = 12
+collision_mask = 8
 script = ExtResource("1_abgcx")
 
 [node name="VisibleShape" type="Polygon2D" parent="."]
@@ -42,3 +43,8 @@ position = Vector2(-109, -48)
 shape = SubResource("SegmentShape2D_abgcx")
 one_way_collision_margin = 0.0
 debug_color = Color(0.999095, 0, 0.123741, 0.42)
+
+[node name="BallSpawnPoint" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(46, 0)
+script = ExtResource("2_fgdim")
