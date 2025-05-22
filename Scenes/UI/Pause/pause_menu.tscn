@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0xsh87l76fcl"]
+
+[ext_resource type="Script" uid="uid://dxc8nty3sllwt" path="res://Scenes/UI/Pause/pause_menu.gd" id="1_krtd4"]
+[ext_resource type="FontFile" uid="uid://ceg6osyeqj5x6" path="res://Resources/Fonts/PlatinumSign/Platinum Sign.ttf" id="2_pklis"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_krtd4"]
+bg_color = Color(0.886275, 0.886275, 0.886275, 0.188235)
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_krtd4")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_krtd4")
+
+[node name="ResetButton" type="Button" parent="."]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -183.0
+offset_top = -30.0
+offset_right = 183.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_pklis")
+theme_override_font_sizes/font_size = 24
+text = "RESET"
+
+[connection signal="pressed" from="ResetButton" to="." method="_on_reset_button_pressed"]
