@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://mu5ukwmouw25" path="res://Scenes/Actors/Player/player.tscn" id="1_borgh"]
 [ext_resource type="Script" uid="uid://dvnjauejpc1ew" path="res://Scenes/Levels/MainLevel/main_level.gd" id="1_e0d41"]
-[ext_resource type="PackedScene" uid="uid://bedhlgnrn0dnu" path="res://Scenes/Actors/Ball/ball.tscn" id="2_borgh"]
 [ext_resource type="PackedScene" uid="uid://f40d3we22bqb" path="res://Scenes/Actors/Goal/goal.tscn" id="3_borgh"]
+[ext_resource type="PackedScene" uid="uid://dymrixwxc542" path="res://Scenes/UI/Score/score_ui.tscn" id="5_hg23k"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6bhdl"]
 normal = Vector2(0, 1)
@@ -16,8 +16,11 @@ normal = Vector2(-1, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_cd41v"]
 
-[node name="MainLevel" type="Node2D"]
+[node name="MainLevel" type="Node2D" node_paths=PackedStringArray("player1", "player2")]
+process_mode = 1
 script = ExtResource("1_e0d41")
+player1 = NodePath("Player1")
+player2 = NodePath("Player2")
 
 [node name="BlackBackground" type="Polygon2D" parent="."]
 color = Color(0, 0, 0, 1)
@@ -27,6 +30,7 @@ polygon = PackedVector2Array(0, 0, 1152, 0, 1152, 648, 0, 648)
 points = PackedVector2Array(1, 1, 1151, 1, 1151, 647, 1, 647)
 closed = true
 width = 2.0
+default_color = Color(1, 1, 1, 0)
 
 [node name="PlaygroundBoundaries" type="Node2D" parent="Playground"]
 
@@ -68,14 +72,16 @@ position = Vector2(34, 339)
 [node name="Player2" parent="." instance=ExtResource("1_borgh")]
 position = Vector2(1114, 335)
 rotation = 3.14159
-player_id = 1
+is_bot = true
 
-[node name="GoalLeft" parent="." instance=ExtResource("3_borgh")]
+[node name="Player1Goal" parent="." node_paths=PackedStringArray("rival_player") instance=ExtResource("3_borgh")]
 position = Vector2(9, 1)
+rival_player = NodePath("../Player2")
 
-[node name="GoalRight" parent="." instance=ExtResource("3_borgh")]
+[node name="Player2Goal" parent="." node_paths=PackedStringArray("rival_player") instance=ExtResource("3_borgh")]
 position = Vector2(1154, 6)
-goal_side = 0
+rival_player = NodePath("../Player1")
 
-[node name="Ball" parent="." instance=ExtResource("2_borgh")]
-position = Vector2(595, 330)
+[node name="ScoreUI" parent="." node_paths=PackedStringArray("player1", "player2") instance=ExtResource("5_hg23k")]
+player1 = NodePath("../Player1")
+player2 = NodePath("../Player2")
