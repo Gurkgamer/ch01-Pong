@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bedhlgnrn0dnu"]
+[gd_scene load_steps=7 format=3 uid="uid://bedhlgnrn0dnu"]
 
 [ext_resource type="Script" uid="uid://hmribswiklum" path="res://Scenes/Actors/Ball/ball.gd" id="1_alge0"]
+[ext_resource type="AudioStream" uid="uid://ba7kcuasc5xwb" path="res://Resources/SFX/UI/220210__gameaudio__bonk-click-wdeny-feel.wav" id="2_vm2ao"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_cd41v"]
 
@@ -13,6 +14,7 @@ gradient = SubResource("Gradient_borgh")
 
 [node name="Ball" type="Area2D" groups=["Ball"]]
 physics_interpolation_mode = 1
+top_level = true
 collision_layer = 4
 collision_mask = 11
 script = ExtResource("1_alge0")
@@ -26,6 +28,14 @@ texture = SubResource("GradientTexture1D_e0d41")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_6bhdl")
+
+[node name="LaserPointer" type="Line2D" parent="."]
+unique_name_in_owner = true
+top_level = true
+
+[node name="BounceSFX" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_vm2ao")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
