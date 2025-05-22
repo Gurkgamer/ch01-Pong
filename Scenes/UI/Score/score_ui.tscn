@@ -36,7 +36,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_twv1f"]
 resource_name = "show_scoreboard"
-length = 0.4
+length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -83,7 +83,7 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="RigthPlayerScore" type="Label" parent="HBoxContainer"]
+[node name="RightPlayerScore" type="Label" parent="HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
