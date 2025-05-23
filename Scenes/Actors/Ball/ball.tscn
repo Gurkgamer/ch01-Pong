@@ -29,10 +29,6 @@ texture = SubResource("GradientTexture1D_e0d41")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_6bhdl")
 
-[node name="LaserPointer" type="Line2D" parent="."]
-unique_name_in_owner = true
-top_level = true
-
 [node name="BounceSFX" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("2_vm2ao")
