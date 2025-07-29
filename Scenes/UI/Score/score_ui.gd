@@ -14,11 +14,16 @@ var player1_points: int = 0:
 	set(value):
 		player1_points = value
 		left_player_score.text = str(player1_points)
+		_signal_score()
 
 var player2_points: int = 0:
 	set(value):
 		player2_points = value
 		right_player_score.text = str(player2_points)
+		_signal_score()
+		
+func _signal_score() -> void:
+	EventBus.current_game_score.emit(Vector2(player1_points, player2_points))
 
 func _ready() -> void:
 	player1.scored.connect(_on_player_one_scored)

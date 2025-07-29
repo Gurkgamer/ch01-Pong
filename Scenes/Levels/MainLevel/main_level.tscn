@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://b3t2ow34bvohm"]
+[gd_scene load_steps=11 format=3 uid="uid://b3t2ow34bvohm"]
 
 [ext_resource type="PackedScene" uid="uid://mu5ukwmouw25" path="res://Scenes/Actors/Player/player.tscn" id="1_borgh"]
 [ext_resource type="Script" uid="uid://dvnjauejpc1ew" path="res://Scenes/Levels/MainLevel/main_level.gd" id="1_e0d41"]
 [ext_resource type="PackedScene" uid="uid://f40d3we22bqb" path="res://Scenes/Actors/Goal/goal.tscn" id="3_borgh"]
+[ext_resource type="Script" uid="uid://delc27ms1a2nb" path="res://Scenes/Actors/CPU/ball_detection_area.gd" id="5_cmota"]
 [ext_resource type="PackedScene" uid="uid://dymrixwxc542" path="res://Scenes/UI/Score/score_ui.tscn" id="5_hg23k"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6bhdl"]
@@ -15,6 +16,9 @@ normal = Vector2(1, 0)
 normal = Vector2(-1, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_cd41v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lqtmj"]
+size = Vector2(40.9992, 648)
 
 [node name="MainLevel" type="Node2D" node_paths=PackedStringArray("player1", "player2")]
 process_mode = 1
@@ -85,3 +89,16 @@ rival_player = NodePath("../Player1")
 [node name="ScoreUI" parent="." node_paths=PackedStringArray("player1", "player2") instance=ExtResource("5_hg23k")]
 player1 = NodePath("../Player1")
 player2 = NodePath("../Player2")
+
+[node name="BallDetectionArea" type="Area2D" parent="."]
+position = Vector2(1114, 335)
+rotation = 3.14159
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("5_cmota")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BallDetectionArea"]
+position = Vector2(507.5, 11.0013)
+shape = SubResource("RectangleShape2D_lqtmj")
+
+[connection signal="area_entered" from="BallDetectionArea" to="BallDetectionArea" method="_on_area_entered"]

@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://cbcrf2e0s4yib"]
+
+[ext_resource type="Script" uid="uid://thfkcb32rfe1" path="res://Scenes/Actors/PhysicBall/physic_ball.gd" id="1_nytri"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nytri"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_nytri"]
+
+[sub_resource type="Gradient" id="Gradient_borgh"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rqc8n"]
+gradient = SubResource("Gradient_borgh")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tecsg"]
+
+[node name="PhysicBall" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 11
+physics_material_override = SubResource("PhysicsMaterial_nytri")
+gravity_scale = 0.0
+script = ExtResource("1_nytri")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+scale = Vector2(20.075, 20.075)
+mesh = SubResource("SphereMesh_nytri")
+texture = SubResource("GradientTexture1D_rqc8n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tecsg")

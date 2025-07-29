@@ -6,7 +6,6 @@ extends CanvasLayer
 @onready var reset_button: Button = %ResetButton
 @onready var toggle_player_2: Button = %TogglePlayer2
 
-
 var paused: bool = false
 
 func _ready() -> void:
