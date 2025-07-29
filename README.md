@@ -2,7 +2,9 @@
 The Challenge Game #1
 
 A pong game made as a challenge from a challenge collection at https://20_games_challenge.gitlab.io/
-I has its flaws, but is good enough. I make come back to it later adn add new things as I learn.
+I has its flaws, but is good enough. I make come back to it later and add new things as I learn.
+
+You can play it at https://gurkgamer.itch.io/pong
 
 ASSET CREDITS
 
